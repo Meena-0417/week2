@@ -1,34 +1,195 @@
-<form action="/register" method="post">
-  <label for="name">Full Name:</label>
-  <input type="text" id="name" name="name" required><br>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Patient Registration Form</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        
+        form {
+            max-width: 600px;
+            margin: 0 auto;
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+        }
+        
+        h2 {
+            text-align: center;
+            color: #4a6fa5;
+            margin-bottom: 25px;
+        }
+        
+        fieldset {
+            border: 1px solid #ddd;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+        }
+        
+        legend {
+            font-weight: bold;
+            color: #4a6fa5;
+            padding: 0 10px;
+        }
+        
+        .form-group {
+            margin-bottom: 15px;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        
+        input, select, textarea {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        
+        textarea {
+            resize: vertical;
+            min-height: 80px;
+        }
+        
+        .required {
+            color: red;
+        }
+        
+        .consent-container {
+            text-align: center;
+            margin: 25px 0;
+        }
+        
+        .consent-content {
+            display: inline-flex;
+            align-items: center;
+        }
+        
+        .consent-content input[type="checkbox"] {
+            width: auto;
+            margin-right: 10px;
+        }
+        
+        .form-actions {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        button {
+            padding: 10px 25px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+        
+        button[type="submit"] {
+            background: #4a6fa5;
+            color: white;
+        }
+        
+        button[type="reset"] {
+            background: #f0f0f0;
+        }
+    </style>
+</head>
+<body>
+    <form action="/register" method="post">
+        <h2>Patient Registration Form</h2>
+        
+        <fieldset>
+            <legend>Personal Information</legend>
+            
+            <div class="form-group">
+                <label for="name">Full Name: <span class="required">*</span></label>
+                <input type="text" id="name" name="name" required minlength="2" maxlength="100">
+            </div>
 
-  <label for="dob">Date of Birth:</label>
-  <input type="date" id="dob" name="dob" required><br>
+            <div class="form-group">
+                <label for="dob">Date of Birth: <span class="required">*</span></label>
+                <input type="date" id="dob" name="dob" required>
+            </div>
 
-  <label for="gender">Gender:</label>
-  <select id="gender" name="gender">
-    <option>Male</option>
-    <option>Female</option>
-    <option>Other</option>
-  </select><br>
+            <div class="form-group">
+                <label for="gender">Gender: <span class="required">*</span></label>
+                <select id="gender" name="gender" required>
+                    <option value="">Select gender</option>
+                    <option value="male">Male</option>
+                    <option value="female">Female</option>
+                    <option value="other">Other</option>
+                </select>
+            </div>
+        </fieldset>
 
-  <label for="phone">Phone Number:</label>
-  <input type="tel" id="phone" name="phone"><br>
+        <fieldset>
+            <legend>Contact Information</legend>
+            
+            <div class="form-group">
+                <label for="phone">Phone Number: <span class="required">*</span></label>
+                <input type="tel" id="phone" name="phone" required pattern="[0-9]{10,15}">
+            </div>
 
-  <label for="email">Email:</label>
-  <input type="email" id="email" name="email"><br>
+            <div class="form-group">
+                <label for="email">Email: <span class="required">*</span></label>
+                <input type="email" id="email" name="email" required>
+            </div>
 
-  <label for="address">Address:</label>
-  <textarea id="address" name="address"></textarea><br>
+            <div class="form-group">
+                <label for="address">Address:</label>
+                <textarea id="address" name="address" rows="3"></textarea>
+            </div>
+        </fieldset>
 
-  <label for="emergencyContact">Emergency Contact:</label>
-  <input type="tel" id="emergencyContact" name="emergencyContact"><br>
+        <fieldset>
+            <legend>Medical Information</legend>
+            
+            <div class="form-group">
+                <label for="emergencyContact">Emergency Contact: <span class="required">*</span></label>
+                <input type="tel" id="emergencyContact" name="emergencyContact" required pattern="[0-9]{10,15}">
+            </div>
 
-  <label for="insurance">Insurance Info:</label>
-  <input type="text" id="insurance" name="insurance"><br>
+            <div class="form-group">
+                <label for="insurance">Insurance Company Name:</label>
+                <input type="text" id="insurance" name="insurance">
+            </div>
 
-  <label for="history">Medical History:</label>
-  <textarea id="history" name="history"></textarea><br>
+            <div class="form-group">
+                <label for="policyNumber">Policy Number:</label>
+                <input type="text" id="policyNumber" name="policyNumber">
+            </div>
 
-  <button type="submit">Register</button>
-</form>
+            <div class="form-group">
+                <label for="history">Medical History:</label>
+                <textarea id="history" name="history" rows="4"></textarea>
+            </div>
+        </fieldset>
+
+        <div class="consent-container">
+            <div class="consent-content">
+                <input type="checkbox" id="consent" name="consent" required>
+                <label for="consent">I agree to the terms and privacy policy <span class="required">*</span></label>
+            </div>
+        </div>
+
+        <div class="form-actions">
+            <button type="submit">Register</button>
+            <button type="reset">Clear Form</button>
+        </div>
+    </form>
+</body>
+</html>
